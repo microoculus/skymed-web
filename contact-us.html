@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/bootstrap-icons.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <title>Infikor</title>
+</head>
+
+<body>
+  <!-- Preloader start -->
+  <div class="preloader">
+    <div class="loader"></div>
+  </div><!-- Preloader end -->
+
+  <div class="wrapper d-flex flex-column">
+    <!-- Header start -->
+    <header class="header sticky-header">
+      <!-- Header main start -->
+      <div class="header-main px-md-4">
+        <div class="container-fluid d-flex align-items-center justify-content-between">
+
+          <div class="d-flex align-items-center">
+            <a class="navbar-brand" href="index.html"><img src="img/logo.png" /></a>
+          </div>
+
+          <div class="main-menu ms-auto">
+            <ul class="nav">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about-us.html">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="subsidiaries.html">Subsidiaries</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="blog.html">Blog & News</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="contact-us.html">Contact Us</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="d-flex align-items-center">
+            <div class="d-flex align-items-center ms-4">
+              <img src="img/globe-icon.svg" class="me-2">
+              <div>
+                <span class="mb-0 text-normal">Global</span>
+              </div>
+            </div>
+
+            <div class="menu-toggler ms-3">
+              <div class="menu-toggler-wrapper">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- Header main end -->
+    </header><!-- Header end -->
+
+    <!-- Banner start -->
+    <div class="banner-block">
+      <div id="inner-slider" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="slider-img" style="background-image: url(./img/banner01.jpg)"></div>
+            <div class="carousel-caption d-flex align-items-center">
+              <div class="container">
+                <h4 class="banner-title-1">Contact Us</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- Banner end -->
+
+    <!-- Content start -->
+    <div class="content-area">
+
+      <!-- Content block start -->
+      <div class="content-area-block">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <h5 class="font-1 fw-medium">Our Focus Areas</h5>
+              <h2 class="text-primary mb-4">We’re here to connect, collaborate, and create impact.</h2>
+              <p class="text-ex-large mb-5">Whether you’re a partner, healthcare innovator, or industry representative,
+                our teams are ready to hear from you.</p>
+
+              <div class="d-flex text-start mb-4">
+                <img style="width: 42px;" class="me-3" src="img/address-icon.svg" alt="">
+                <div>
+                  <h6 class="font-1 fw-semi-bold mb-2">Head Office</h6>
+                  <p class="fw-normal mb-0">
+                    Ukraine
+                  </p>
+                </div>
+              </div>
+
+              <div class="d-flex text-start mb-4">
+                <img style="width: 42px;" class="me-3" src="img/phone-icon.svg" alt="">
+                <div>
+                  <h6 class="font-1 fw-semi-bold mb-2">Phone</h6>
+                  <p class="fw-normal mb-0">
+                    00000
+                  </p>
+                </div>
+              </div>
+
+              <div class="d-flex text-start">
+                <img style="width: 42px;" class="me-3" src="img/mail-icon.svg" alt="">
+                <div>
+                  <h6 class="font-1 fw-semi-bold mb-2">Email</h6>
+                  <p class="fw-normal mb-0">
+                    <a href="#">mail@mail.com</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 offset-md-2 mt-5 mt-md-0">
+              <h5 class="font-1 fw-medium mb-4">Leave Us a Message</h5>
+              <form class="row g-3" id="contact-form" method="post" action="contact.php" role="form">
+                <div class="col-12">
+                  <label class="form-label">Name</label>
+                  <input id="form_name" type="text" name="name" class="form-control" placeholder="Full Name *" required>
+                  <div class="form-feedback"></div>
+                </div>
+
+                <div class="col-12">
+                  <label class="form-label">Email</label>
+                  <input id="form_email" type="email" name="email" class="form-control" placeholder="Email *" required
+                    data-error="Valid email is required.">
+                  <div class="form-feedback with-errors"></div>
+                </div>
+
+                <div class="col-12">
+                  <label class="form-label">Phone</label>
+                  <input id="form_phone" type="text" name="phone" class="form-control" placeholder="Contact No. *"
+                    required data-error="Phone is required.">
+                  <div class="form-feedback"></div>
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Message</label>
+                  <textarea class="form-control" name="message" placeholder="Comments" rows="5"></textarea>
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div><!-- Content block end -->
+
+      <!-- Content block start -->
+      <div class="content-area-block pt-0">
+        <div class="container">
+          <h5 class="font-1 fw-medium">Regional Office Contact</h5>
+          <h2 class="text-primary mb-5">Our Subsidiary Companies</h2>
+          <div class="slider slider-1">
+            <div class="slide">
+              <div class="card card-item-1">
+                <div class="card-img">
+                  <img src="img/img-3.jpg" alt="">
+                </div>
+                <div class="card-body">
+                  <a href="#" target="_blank"><h5>Sky Pharma</h5></a>
+                  <a href="#" target="_blank">skypharma.com</a>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card card-item-1">
+                <div class="card-img">
+                  <img src="img/img-3.jpg" alt="">
+                </div>
+                <div class="card-body">
+                  <a href="#" target="_blank"><h5>AICE Healthcare</h5></a>
+                  <a href="#" target="_blank">aicehealthcare.com</a>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card card-item-1">
+                <div class="card-img">
+                  <img src="img/img-3.jpg" alt="">
+                </div>
+                <div class="card-body">
+                  <a href="#" target="_blank"><h5>Skymed Pharma</h5></a>
+                  <a href="#" target="_blank">skymedpharma.com</a>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card card-item-1">
+                <div class="card-img">
+                  <img src="img/img-3.jpg" alt="">
+                </div>
+                <div class="card-body">
+                  <a href="#" target="_blank"><h5>Gydan Lifescience Pvt. Ltd.</h5></a>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card card-item-1">
+                <div class="card-img">
+                  <img src="img/img-3.jpg" alt="">
+                </div>
+                <div class="card-body">
+                  <a href="#" target="_blank"><h5>Blooming</h5></a>
+                  <a href="#" target="_blank">blooming.com.ua</a>
+                </div>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      </div><!-- Content block end -->
+
+      <!-- Content block start -->
+      <div class="content-area-block p-0">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5397913.996493473!2d25.903735178555475!3d48.65385035014834!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d1d9c154700e8f%3A0x1068488f64010!2sUkraine!5e0!3m2!1sen!2sin!4v1752501735928!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div><!-- Content block end -->
+
+    </div>
+    <!-- Footer start -->
+    <footer class="footer mt-auto bg-primary">
+      <div class="footer-main">
+        <div class="container">
+          <div class="row g-4">
+            <div class="col-md-3 text-center text-md-start">
+              <a class="navbar-brand mb-2 mb-md-4" href="index.html"><img src="img/logo.png" /></a>
+              <p class="text-small">NFIKOR Holdings, headquartered in Dubai and established in 2022, is a visionary
+                investment and strategic management group focused on advancing global healthcare.</p>
+              <ul class="nav justify-content-center justify-content-md-start">
+                <li class="nav-item me-3">
+                  <a class="nav-link" href="#" target="_blank"><img src="img/yt-icon.svg"></a>
+                </li>
+                <li class="nav-item me-3">
+                  <a class="nav-link" href="#" target="_blank"><img src="img/tw-icon.svg"></a>
+                </li>
+                <li class="nav-item me-3">
+                  <a class="nav-link" href="#" target="_blank"><img src="img/ins-icon.svg"></a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-3 offset-md-3">
+              <h5>Menu</h5>
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">About Us</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Subsidiaries</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Blog & News</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Contact Us</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-3">
+              <h5>Support</h5>
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a class="nav-link" href="#"><img src="img/mail-l-icon.svg" class="me-2"> mail@mail.com</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#"><img src="img/phone-l-icon.svg" class="me-2"> 000000</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <p class="mb-0 text-small">© Copyright
+                <script>document.write(new Date().getFullYear())</script> - Infikor. All Rights Reserved.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </footer><!-- Footer end -->
+
+  </div>
+
+  <!-- Side bar start -->
+  <div class="side-bar"></div><!-- Side bar end -->
+
+  <!-- JS -->
+  <script src="js/jquery-2.2.4.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/slick.js"></script>
+
+  <!-- Custom JS -->
+  <script src="js/main.js"></script>
+
+</body>
+
+</html>

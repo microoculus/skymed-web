@@ -1,0 +1,40 @@
+@mixin bootstrapIcon {
+    display: inline-block;
+    font-display: block;
+    font-family: bootstrap-icons !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+@mixin searchIcon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: 0;
+    background: transparent;
+    font-size: 22px;
+    line-height: 40px;
+    padding: 0 14px;
+    color: var(--bs-secondary);
+}
+@mixin transitionAll {
+    -webkit-transition: all 300ms ease-out 0s;
+	-moz-transition: all 300ms ease-out 0s;
+	-o-transition: all 300ms ease-out 0s;
+	transition: all 300ms ease-out 0s;
+}
+@mixin transitionAll200 {
+    -webkit-transition: all 200ms ease-out 0s;
+	-moz-transition: all 200ms ease-out 0s;
+	-o-transition: all 200ms ease-out 0s;
+	transition: all 200ms ease-out 0s;
+}
+@mixin transitionAll100 {
+    -webkit-transition: all 100ms ease-out 0s;
+	-moz-transition: all 100ms ease-out 0s;
+	-o-transition: all 100ms ease-out 0s;
+	transition: all 100ms ease-out 0s;
+}

@@ -1,0 +1,30 @@
+.main-menu {
+    display: flex;
+    align-items: center;
+	.nav-item {
+		display: flex;
+		align-items: center;
+	}
+	.nav-link {
+		font-family: var(--font-1);
+		padding: 6px 16px;
+		font-size: 16px;
+		color: var(--bs-dark);
+		font-weight: var(--fw-normal);
+		display: flex;
+    	align-items: center;
+		@include transitionAll;
+
+		&:hover {
+			color: var(--bs-primary);
+		}
+	}
+	.active .nav-link {
+		color: var(--bs-primary);
+		background-color: #fff;
+	}
+	
+}
+
+@media (max-width: 991px) {}
+@media (max-width: 767px) {}

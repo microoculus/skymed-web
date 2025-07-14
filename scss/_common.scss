@@ -1,0 +1,205 @@
+/*!
+ * CSS Style for Bootstrap v5.0.2
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+ 
+:root {
+    --bs-primary: #3F4083;
+    --bs-primary-hover: #313272;
+    --bs-secondary: #575757;
+    --bs-light: #5D6167;
+    --bs-bg: #F9F9F9;
+    --bs-dark: #06060B;
+    --bs-dark-hover: #071437;
+    --fw-light: 300;
+    --fw-normal: 400;
+    --fw-medium: 500;
+    --fw-semi-bold: 600;
+    --fw-bold: 700;
+    --font-1: "Roboto", sans-serif;
+    --font-2: "DM Serif Display", serif;
+}
+html, body {
+	height: 100%;
+}
+body {
+	font-family: var(--font-1);
+	font-size: 15px;
+	font-weight: var(--fw-normal);
+	line-height: 1.2;
+	color: var(--bs-dark);
+}
+a {
+	color: var(--bs-primary);
+	text-decoration: none;
+	@include transitionAll;
+	
+	&:hover {
+		text-decoration: none;
+		color: var(--bs-dark);
+	}
+}
+h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+	font-weight: var(--fw-normal);
+	color: var(--bs-dark);
+	margin-bottom: 10px;
+	line-height: 1.2;
+	font-family: var(--font-2);
+}
+h1 {
+	font-size: 64px;
+}
+h2 {	
+	font-size: 42px;
+}
+h3 {
+	font-size: 32px;
+}
+h4 {
+	font-size: 28px;
+}
+h5 {
+	font-size: 20px;
+}
+h6 {
+	font-size: 16px;
+}
+p, .p {
+	font-family: var(--font-1);
+	font-size: 16px;
+    color: var(--bs-light);
+	line-height: 30px;
+	margin-bottom: 16px;
+	font-weight: var(--fw-light);
+}
+
+/*---Text ---------------------------------------------*/
+.font-1 {
+	font-family: var(--font-1) !important;
+}
+.font-2 {
+	font-family: var(--font-2) !important;
+}
+.text-normal {
+	font-size: 16px;
+}
+.text-small {
+	font-size: 14px;
+	line-height: 1.8;
+}
+.text-ex-small {
+	font-size: 11px;
+}
+.text-large {
+	font-size: 18px;
+}
+.text-ex-large {
+	font-size: 20px;
+}
+.text-primary {
+	color: var(--bs-primary) !important;
+}
+.text-secondary {
+	color: var(--bs-secondary) !important;
+}
+.text-dark {
+	color: var(--bs-dark) !important;
+}
+.text-dark-blue {
+	color: var(--bs-primary) !important;
+}
+.text-success {
+	color: #00A261 !important;
+}
+.text-danger {
+	color: #cf4a4a !important;
+}
+.text-light {
+	color: #6E6E71 !important;
+}
+.fw-light {
+  font-weight: var(--fw-light) !important;
+}
+.fw-normal {
+  font-weight: var(--fw-normal) !important;
+}
+.fw-medium {
+	font-weight: var(--fw-medium) !important;
+}
+.fw-semi-bold {
+	font-weight: var(--fw-semi-bold) !important;
+}
+.fw-bold {
+  font-weight: var(--fw-bold) !important;
+}
+.text-justify {
+	text-align: justify !important;
+}
+
+/*---Bg ---------------------------------------------*/
+.bg-primary {
+	background-color: var(--bs-primary) !important;
+}
+.bg-light {
+	background-color: var(--bs-bg) !important;
+}
+.bg-dark {
+    background-color: var(--bs-dark) !important;
+}
+
+/*---Other ---------------------------------------------*/
+.min-w-auto {
+	min-width: auto !important;
+}
+
+iframe {
+    border: 0;
+    display: block;
+}
+
+/*---Responsive ---------------------------------------------*/
+@media (min-width: 768px) {
+    .h-md-100 {
+		min-height: 100%;
+	}
+	p.text-md-small {
+		font-size: 13px;
+	}
+	p.text-md-large {
+		font-size: 16px;
+	}
+}
+
+@media (max-width: 767px) {
+	h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+		color: var(--bs-dark);
+		margin-bottom: 10px;
+		line-height: 1.2;
+		font-family: var(--font-2);
+	}
+	h1 {
+		font-size: 50px;
+	}
+	h2 {	
+		font-size: 40px;
+	}
+	h3 {
+		font-size: 36px;
+	}
+	h4 {
+		font-size: 26px;
+	}
+	h5 {
+		font-size: 20px;
+	}
+	h6 {
+		font-size: 16px;
+	}
+	p, .p {
+		font-family: var(--font-1);
+		font-size: 16px;
+		line-height: 30px;
+		margin-bottom: 16px;
+	}
+}
