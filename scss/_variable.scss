@@ -1,0 +1,52 @@
+
+// scss-docs-start color-variables
+$variable-color:       bs- !default;
+
+$colorPrimary:      #1B84FF !default;
+$hoverPrimary:      #1b72d6 !default;
+$colorSecondary:    #575757 !default;
+$colorLight:        #f3f6fe !default;
+$colorBg:           #fafafa !default;
+$colorDark:         #071437 !default;
+$hoverDark:         #071437 !default;
+
+$colors: (
+  "primary":            $colorPrimary,
+  "primary-hover":      $hoverPrimary,
+  "secondary":          $colorSecondary,
+  "light":              $colorLight,
+  "bg":                 $colorBg,
+  "dark":               $colorDark,
+  "dark-hover":         $hoverDark,
+) !default;
+// scss-docs-end color-variables
+
+// scss-docs-start font-variables
+$variable-fontFamily:   font- !default;
+
+$font1:         "Inter", sans-serif !default;
+$font2:         "Montserrat", sans-serif !default;
+
+$fontFamilys: (
+  "1":          $font1,
+  "2":          $font2,
+) !default;
+// scss-docs-end font-variables
+
+// scss-docs-start font-weight-variables
+$variable-fontWeight:   fw- !default;
+
+$fwLight:       300 !default;
+$fwRegular:     400 !default;
+$fwMedium:      500 !default;
+$fwSemiBold:    600 !default;
+$fwBold:        700 !default;
+
+$fontWeights: (
+  "light":      $fwLight,
+  "normal":     $fwRegular,
+  "medium":     $fwMedium,
+  "semi-bold":  $fwSemiBold,
+  "bold":       $fwBold,
+) !default;
+// scss-docs-end font-weight-variables

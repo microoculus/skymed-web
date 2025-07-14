@@ -1,0 +1,211 @@
+.btn {
+	font-family: var(--font-1);
+    font-size: 15px;
+	line-height: 1;
+	padding: 14px 20px;
+	border-radius: 6px;
+	font-weight: var(--fw-bold);
+	border: 1px solid transparent;
+	@include transitionAll;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+.btn-check:focus + .btn, .btn:focus {
+	outline: 0;
+	box-shadow: none;
+}
+.btn-x-sm {
+	padding: 9px 10px;
+    font-size: 12px !important;
+	font-weight: var(--fw-medium);
+	min-width: auto;
+}
+.btn-sm {
+	padding: 12px;
+    font-size: 14px !important;
+	font-weight: var(--fw-medium);
+	min-width: 122px;
+}
+.btn-lg {
+    padding: 4px 24px 0;
+    text-transform: none;
+    font-size: 16px;
+    font-weight: var(--fw-semi-bold);
+    letter-spacing: 0.05em;
+    height: 54px;
+    min-width: 190px;
+}
+.btn-primary {
+	color: #fff;
+    background-color: var(--bs-primary);
+    border-color: transparent;
+
+	&:hover {
+		background-color: var(--bs-primary-hover);
+		border-color: var(--bs-primary-hover);
+	}
+}
+.btn-check:focus + .btn-primary, .btn-primary:focus {
+	color: var(--bs-primary);
+	background-color: transparent;
+	border-color: var(--bs-primary);
+	box-shadow: none;
+}
+.btn-check:checked + .btn-primary, .btn-check:active + .btn-primary, .btn-primary:active, .btn-primary.active, .show > .btn-primary.dropdown-toggle {
+	color: var(--bs-primary);
+	background-color: transparent;
+	border-color: var(--bs-primary);
+}
+.btn-check:checked + .btn-primary:focus, .btn-check:active + .btn-primary:focus, .btn-primary:active:focus, .btn-primary.active:focus, .show > .btn-primary.dropdown-toggle:focus {
+	box-shadow: none;
+}
+
+.btn-secondary {
+	color: #fff;
+    background-color: var(--bs-secondary);
+    border-color: transparent;
+
+	&:hover {
+		background-color: var(--bs-secondary);
+		border-color: var(--bs-secondary);
+		opacity: 0.7;
+	}
+}
+.btn-check:focus + .btn-secondary, .btn-secondary:focus {
+	color: var(--bs-secondary);
+	background-color: transparent;
+	border-color: var(--bs-secondary);
+	box-shadow: none;
+}
+.btn-check:checked + .btn-secondary, .btn-check:active + .btn-secondary, .btn-secondary:active, .btn-secondary.active, .show > .btn-secondary.dropdown-toggle {
+	color: var(--bs-secondary);
+	background-color: transparent;
+	border-color: var(--bs-secondary);
+}
+.btn-check:checked + .btn-secondary:focus, .btn-check:active + .btn-secondary:focus, .btn-secondary:active:focus, .btn-secondary.active:focus, .show > .btn-secondary.dropdown-toggle:focus {
+	box-shadow: none;
+}
+
+.btn-success {
+	color: #fff;
+    background-color: var(--bs-success);
+    border-color: transparent;
+	&:hover {
+		background-color: var(--bs-success);
+		border-color: var(--bs-success);
+		opacity: 0.7;
+	}
+}
+.btn-check:focus + .btn-success, .btn-success:focus {
+	color: var(--bs-success);
+	background-color: transparent;
+	border-color: var(--bs-success);
+	box-shadow: none;
+}
+.btn-check:checked + .btn-success, .btn-check:active + .btn-success, .btn-success:active, .btn-success.active, .show > .btn-success.dropdown-toggle {
+	color: var(--bs-success);
+	background-color: transparent;
+	border-color: var(--bs-success);
+}
+.btn-check:checked + .btn-success:focus, .btn-check:active + .btn-success:focus, .btn-success:active:focus, .btn-success.active:focus, .show > .btn-success.dropdown-toggle:focus {
+	box-shadow: none;
+}
+
+.btn-danger {
+	color: #fff;
+    background-color: var(--bs-danger);
+    border-color: transparent;
+	&:hover {
+		background-color: var(--bs-danger);
+		border-color: var(--bs-danger);
+		opacity: 0.7;
+	}
+}
+.btn-check:focus + .btn-danger, .btn-danger:focus {
+	color: var(--bs-danger);
+	background-color: transparent;
+	border-color: var(--bs-danger);
+	box-shadow: none;
+}
+.btn-check:checked + .btn-danger, .btn-check:active + .btn-danger, .btn-danger:active, .btn-danger.active, .show > .btn-danger.dropdown-toggle {
+	color: var(--bs-danger);
+	background-color: transparent;
+	border-color: var(--bs-danger);
+}
+.btn-check:checked + .btn-danger:focus, .btn-check:active + .btn-danger:focus, .btn-danger:active:focus, .btn-danger.active:focus, .show > .btn-danger.dropdown-toggle:focus {
+	box-shadow: none;
+}
+
+.btn-dark {
+	color: #fff;
+	background-color: var(--bs-dark);
+	border-color: var(--bs-dark);
+
+	&:hover {
+		color: #fff;
+		background-color: var(--bs-dark-hover);
+		border-color: var(--bs-dark-hover);
+	}
+}
+.btn-check:focus + .btn-dark, .btn-dark:focus {
+	color: #fff;
+	background-color: #1c1f23;
+	border-color: #1a1e21;
+	box-shadow: none;
+}
+.btn-check:checked + .btn-dark, .btn-check:active + .btn-dark, .btn-dark:active, .btn-dark.active, .show > .btn-dark.dropdown-toggle {
+	color: #fff;
+	background-color: #1a1e21;
+	border-color: #191c1f;
+}
+.btn-check:checked + .btn-dark:focus, .btn-check:active + .btn-dark:focus, .btn-dark:active:focus, .btn-dark.active:focus, .show > .btn-dark.dropdown-toggle:focus {
+	box-shadow: none;
+}
+.btn-light {
+	color: var(--bs-dark);
+	background-color: #F9F9F9;
+	border-color: #F1F1F4;
+
+	&:hover {
+		color: var(--bs-dark);
+		background-color: #F9F9F9;
+		border-color: #F1F1F4;
+	}
+}
+.btn-check:focus + .btn-light, .btn-light:focus {
+	color: var(--bs-dark);
+	background-color: #F9F9F9;
+	border-color: #F1F1F4;
+	box-shadow: none;
+}
+.btn-check:checked + .btn-light, .btn-check:active + .btn-light, .btn-light:active, .btn-light.active, .show > .btn-light.dropdown-toggle {
+	color: var(--bs-dark);
+	background-color: #F9F9F9;
+	border-color: #F1F1F4;
+}
+.btn-check:checked + .btn-light:focus, .btn-check:active + .btn-light:focus, .btn-light:active:focus, .btn-light.active:focus, .show > .btn-light.dropdown-toggle:focus {
+	box-shadow: none;
+}
+
+.btn-outline {
+	border: 1px solid #DBDFE9;
+	background-color: #fff;
+	color: #4B5675;
+}
+.btn-outline:hover {
+	background-color: #f3f3f3;
+}
+.btn-link {
+    color: var(--bs-primary);
+    font-size: 16px;
+    padding-bottom: 0;
+    border: none;
+    background-color: transparent;
+    border-bottom: none;
+    text-decoration: none;
+	display: inline-block;
+	&:hover {
+		color: var(--bs-dark);
+	}
+}
