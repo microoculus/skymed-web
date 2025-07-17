@@ -1758,8 +1758,13 @@ input[type=radio]:checked + label:after {
   top: 0;
 }
 
+#inner-slider {
+  position: relative;
+}
 #inner-slider .slider-img {
-  height: 230px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
   background-size: cover;
   background-position: center;
 }
@@ -1773,12 +1778,11 @@ input[type=radio]:checked + label:after {
   left: 0;
   opacity: 0.6;
 }
-#inner-slider .carousel-caption {
-  text-align: left;
-  right: 0;
-  left: 0;
-  top: 0;
-  bottom: 0;
+#inner-slider .slider-caption {
+  position: relative;
+  z-index: 10;
+  padding-top: 90px;
+  padding-bottom: 90px;
 }
 #inner-slider .banner-title-1 {
   color: #fff;
