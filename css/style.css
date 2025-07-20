@@ -1536,6 +1536,10 @@ input[type=radio]:checked + label:after {
   margin-left: 8px;
 }
 
+.dropdown-item:active {
+  background-color: var(--bs-primary);
+}
+
 @media (max-width: 991px) {
   header {
     transition: all 0.2s ease 0s;
@@ -2907,5 +2911,41 @@ p.paragraph-3 {
 @media (min-width: 576px) {
   .modal-sm {
     max-width: 380px;
+  }
+}
+.world-map {
+  position: relative;
+}
+.world-map .map-marker {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+.world-map .map-marker:hover .map-point {
+  transform: scale(1.5);
+  margin-top: -10px;
+}
+.world-map .map-marker:hover .point-name {
+  display: block;
+}
+.world-map .map-point {
+  width: 22px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-left: -11px;
+  transform-origin: bottom center;
+  transition: all 100ms ease-out 0s;
+}
+.world-map .point-name {
+  position: absolute;
+  display: none;
+  bottom: 42px;
+  left: -16px;
+}
+
+@media (max-width: 767px) {
+  .world-map .map-point {
+    width: 12px;
+    margin-left: -6px;
   }
 }/*# sourceMappingURL=style.css.map */

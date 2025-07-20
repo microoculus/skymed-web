@@ -53,13 +53,16 @@
           </div>
 
           <div class="d-flex align-items-center">
-            <div class="d-flex align-items-center ms-4">
-              <img src="img/globe-icon.svg" class="me-2">
-              <div>
+            <div class="dropdown">
+              <a href="#" class="d-flex align-items-center ms-4 cu" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="img/globe-icon.svg" class="me-2">
                 <span class="mb-0 text-normal">Global</span>
-              </div>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">English</a></li>
+              </ul>
             </div>
-
+            
             <div class="menu-toggler ms-3">
               <div class="menu-toggler-wrapper">
                 <span></span>
@@ -101,7 +104,7 @@
             <div class="col-6 col-md-4 col-lg-3">
               <div class="card card-item-1">
                 <div class="card-img">
-                  <img src="img/img-3.jpg" alt="">
+                  <img src="img/sky.jpg" alt="">
                 </div>
                 <div class="card-body">
                   <h5>Sky Pharma</h5>
@@ -114,7 +117,7 @@
             <div class="col-6 col-md-4 col-lg-3">
               <div class="card card-item-1">
                 <div class="card-img">
-                  <img src="img/img-3.jpg" alt="">
+                  <img src="img/aice.jpg" alt="">
                 </div>
                 <div class="card-body">
                   <h5>AICE Healthcare</h5>
@@ -127,7 +130,7 @@
             <div class="col-6 col-md-4 col-lg-3">
               <div class="card card-item-1">
                 <div class="card-img">
-                  <img src="img/img-3.jpg" alt="">
+                  <img src="img/sky-med.jpg" alt="">
                 </div>
                 <div class="card-body">
                   <h5>Skymed Pharma</h5>
@@ -146,7 +149,7 @@
                   <h5>Gydan Lifescience Pvt. Ltd.</h5>
                   <p class="mb-0">India</p>
                   <p class="fw-medium text-small mb-2">Development, manufacturing, and marketing of generic pharmaceuticals.</p>
-                  <a href="#">Read more</a>
+                  <a href="subsidiaries-details.html">Read more</a>
                 </div>
               </div>
             </div>
@@ -159,7 +162,45 @@
                   <h5>Blooming</h5>
                   <p class="mb-0">Ukraine</p>
                   <p class="fw-medium text-small mb-2">Sales and marketing of medical devices and nutraceuticals.</p>
-                  <a href="#">Read more</a>
+                  <a href="subsidiaries-details.html">Read more</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-3">
+              <div class="card card-item-1">
+                <div class="card-img">
+                  <img src="img/img-3.jpg" alt="">
+                </div>
+                <div class="card-body">
+                  <h5>Sance Steriles Pvt. Ltd.</h5>
+                  <p class="mb-0">India</p>
+                  <p class="fw-medium text-small mb-2">Sterile medicine manufacturing, import/export of healthcare products.</p>
+                  <a href="subsidiaries-details.html">Read more</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-3">
+              <div class="card card-item-1">
+                <div class="card-img">
+                  <img src="img/sky.jpg" alt="">
+                </div>
+                <div class="card-body">
+                  <h5>Sky Sance</h5>
+                  <p class="fw-medium text-small mb-2">A collaborative venture leveraging the combined strengths of Sky Pharma and Sance Steriles, focused on advanced manufacturing and market expansion</p>
+                  <a href="subsidiaries-details.html">Read more</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-3">
+              <div class="card card-item-1">
+                <div class="card-img">
+                  <img src="img/img-3.jpg" alt="">
+                </div>
+                <div class="card-body">
+                  <h5>Solutions Ukraine</h5>
+                  <p class="mb-0">Ukraine</p>
+                  <p class="fw-medium text-small mb-2">Pharmaceutical support services and operational consulting in Ukraine.</p>
+                  <a href="subsidiaries-details.html">Read more</a>
                 </div>
               </div>
             </div>
@@ -194,19 +235,19 @@
               <h5>Menu</h5>
               <ul class="nav flex-column">
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Home</a>
+                  <a class="nav-link" href="index.html">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">About Us</a>
+                  <a class="nav-link" href="about-us.html">About Us</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Subsidiaries</a>
+                  <a class="nav-link" href="subsidiaries.html">Subsidiaries</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Blog & News</a>
+                  <a class="nav-link" href="blog.html">Blog & News</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Contact Us</a>
+                  <a class="nav-link" href="contact-us.html">Contact Us</a>
                 </li>
               </ul>
             </div>
@@ -245,6 +286,7 @@
 
   <!-- JS -->
   <script src="js/jquery-2.2.4.min.js"></script>
+  <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/slick.js"></script>
 

@@ -1,0 +1,40 @@
+.world-map {
+    position: relative;
+    .map-marker {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        &:hover {
+            .map-point {
+                transform: scale(1.5);
+                margin-top: -10px;
+            }
+            .point-name {
+                display: block;
+            }
+        }
+    }
+    .map-point {
+        width: 22px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        margin-left: -11px;
+        transform-origin: bottom center;
+        transition: all 100ms ease-out 0s;
+    }
+    .point-name {
+        position: absolute;
+        display: none;
+        bottom: 42px;
+        left: -16px;
+    }
+}
+
+@media (max-width: 767px) {
+    .world-map {
+        .map-point {
+            width: 12px;
+            margin-left: -6px;
+        }
+    }
+}

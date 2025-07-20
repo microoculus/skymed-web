@@ -53,11 +53,14 @@
           </div>
 
           <div class="d-flex align-items-center">
-            <div class="d-flex align-items-center ms-4">
-              <img src="img/globe-icon.svg" class="me-2">
-              <div>
+            <div class="dropdown">
+              <a href="#" class="d-flex align-items-center ms-4 cu" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="img/globe-icon.svg" class="me-2">
                 <span class="mb-0 text-normal">Global</span>
-              </div>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">English</a></li>
+              </ul>
             </div>
 
             <div class="menu-toggler ms-3">
@@ -177,19 +180,19 @@
               <h5>Menu</h5>
               <ul class="nav flex-column">
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Home</a>
+                  <a class="nav-link" href="index.html">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">About Us</a>
+                  <a class="nav-link" href="about-us.html">About Us</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Subsidiaries</a>
+                  <a class="nav-link" href="subsidiaries.html">Subsidiaries</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Blog & News</a>
+                  <a class="nav-link" href="blog.html">Blog & News</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Contact Us</a>
+                  <a class="nav-link" href="contact-us.html">Contact Us</a>
                 </li>
               </ul>
             </div>
@@ -228,6 +231,7 @@
 
   <!-- JS -->
   <script src="js/jquery-2.2.4.min.js"></script>
+  <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/slick.js"></script>
 
