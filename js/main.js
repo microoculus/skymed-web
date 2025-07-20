@@ -10,16 +10,7 @@ $(document).ready(function () {
 		});
 	});
 
-	$(".dropdown").each(function () {
-		var dropDown = $(this);
-		var dropDownLink = $(this).find("> a");
-
-		$(dropDown).hover(function () {
-			$(dropDown).addClass("show");
-		}, function () {
-			$(dropDown).removeClass("show");
-		});
-	});
+	
 
 	$(function () {
 		$('.side-bar').prepend('<div class="side-menu"></div><div class="side-mega-menu"></div>');
@@ -67,11 +58,11 @@ $(document).ready(function () {
 		slidesToShow: 4,
 		slidesToScroll: 1,
 		autoplay: true,
-		autoplaySpeed: 5000,
+		autoplaySpeed: 2000,
 		arrows: false,
 		dots: false,
-		focusOnSelect: true,
-		pauseOnHover: false,
+		focusOnSelect: false,
+		pauseOnHover: true,
 		infinite: false,
 		responsive: [{
 			breakpoint: 1200,
@@ -100,7 +91,7 @@ $(document).ready(function () {
 		slidesToScroll: 1,
 		autoplay: true,
 		autoplaySpeed: 5000,
-		arrows: false,
+		arrows: true,
 		dots: false,
 		focusOnSelect: true,
 		pauseOnHover: false,
