@@ -3,6 +3,7 @@
     .map-marker {
         position: absolute;
         transform: translate(-50%, -50%);
+        cursor: pointer;
         &:hover {
             .map-point {
                 transform: scale(1.5);

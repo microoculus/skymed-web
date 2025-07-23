@@ -1084,6 +1084,9 @@ input[type=radio]:checked + label:after {
 .slider-1 .slide {
   padding: 0 15px;
 }
+.slider-1 .slick-prev, .slider-1 .slick-next {
+  top: 24%;
+}
 .slider-1 .slick-dots {
   padding-top: 20px;
 }
@@ -2919,6 +2922,7 @@ p.paragraph-3 {
 .world-map .map-marker {
   position: absolute;
   transform: translate(-50%, -50%);
+  cursor: pointer;
 }
 .world-map .map-marker:hover .map-point {
   transform: scale(1.5);
