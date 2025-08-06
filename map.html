@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Zoomable Map with Fixed Markers</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .map-container {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+      background-color: #f0f0f0;
+    }
+
+    .map-inner {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform-origin: top left;
+      cursor: grab;
+	  width: 100%;
+    }
+
+    .map-inner:active {
+      cursor: grabbing;
+    }
+
+    .map-inner img.map-image {
+      display: block;
+      max-width: none;
+    }
+
+    .map-marker {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      transform: translate(-50%, -50%);
+      pointer-events: none; /* allow mouse through */
+    }
+
+    .map-marker img {
+      width: 100%;
+      height: auto;
+	  width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<div class="map-container" id="map-container">
+  <div class="map-inner" id="map-inner">
+    <img src="img/map.svg" class="map-image" alt="Map">
+  </div>
+
+  <!-- Fixed-size markers positioned as percentage of map -->
+  <div class="map-marker" data-x="69" data-y="51">
+    <img src="img/map-point.svg" alt="India">
+  </div>
+  <div class="map-marker" data-x="62" data-y="48.7">
+    <img src="img/map-point.svg" alt="UAE">
+  </div>
+ 
+            <div class="map-marker" style="top: 51%; left: 69%;">
+              <img class="map-point" src="img/map-point.svg" alt="">
+              <span class="point-name">India</span>
+            </div>
+            <div class="map-marker" style="top: 48.7%; left: 62%;">
+              <img class="map-point" src="img/map-point.svg" alt="">
+              <span class="point-name">UAE</span>
+            </div>
+            <div class="map-marker" style="top: 31.7%; left: 56.2%;">
+              <img class="map-point" src="img/map-point.svg" alt="">
+              <span class="point-name">Ukraine</span>
+            </div>
+            <div class="map-marker" style="top: 36.7%; left: 65%;">
+              <img class="map-point" src="img/map-point.svg" alt="">
+              <span class="point-name">Uzbekistan</span>
+            </div>
+            <div class="map-marker" style="top: 60.8%; left: 75.6%;">
+              <img class="map-point" src="img/map-point.svg" alt="">
+              <span class="point-name">Malaysia</span>
+            </div>
+            
+            <div class="map-marker" style="top: 33.2%; left: 55.6%;">
+              <img class="map-point" src="img/map-point.svg" alt="">
+              <span class="point-name">Moldova</span>
+            </div>
+            <div class="map-marker" style="top: 36.2%; left: 59.3%;">
+              <img class="map-point" src="img/map-point.svg" alt="">
+              <span class="point-name">Georgia</span>
+            </div>
+            <div class="map-marker" style="top: 38.7%; left: 63.3%;">
+              <img class="map-point" src="img/map-point.svg" alt="">
+              <span class="point-name">Turkeministan</span>
+            </div>
+            <div class="map-marker" style="top: 38.7%; left: 67.5%;">
+              <img class="map-point" src="img/map-point.svg" alt="">
+              <span class="point-name">Tajikstan</span>
+            </div>
+            <div class="map-marker" style="top: 37%; left: 68.5%;">
+              <img class="map-point" src="img/map-point.svg" alt="">
+              <span class="point-name">Kirgystan</span>
+            </div>
+            <div class="map-marker" style="top: 37.2%; left: 60.6%;">
+              <img class="map-point" src="img/map-point.svg" alt="">
+              <span class="point-name">Azerbaijan</span>
+            </div>
+            <div class="map-marker" style="top: 47.2%; left: 61.5%;">
+              <img class="map-point" src="img/map-point.svg" alt="">
+              <span class="point-name">Bahrain</span>
+            </div>
+            <div class="map-marker" style="top: 47.7%; left: 62%;">
+              <img class="map-point" src="img/map-point.svg" alt="">
+              <span class="point-name">Qatar</span>
+            </div>
+            <div class="map-marker" style="top: 53.9%; left: 43.2%;">
+              <img class="map-point" src="img/map-point.svg" alt="">
+              <span class="point-name">Senegal</span>
+            </div>
+            <div class="map-marker" style="top: 59.4%; left: 45.5%;">
+              <img class="map-point" src="img/map-point.svg" alt="">
+              <span class="point-name">Ivorycost</span>
+            </div>
+            <div class="map-marker" style="top: 53.9%; left: 49.2%;">
+              <img class="map-point" src="img/map-point.svg" alt="">
+              <span class="point-name">Niger</span>
+            </div>
+            <div class="map-marker" style="top: 58.8%; left: 47.7%;">
+              <img class="map-point" src="img/map-point.svg" alt="">
+              <span class="point-name">Benin</span>
+            </div>
+            <div class="map-marker" style="top: 59%; left: 47.3%;">
+              <img class="map-point" src="img/map-point.svg" alt="">
+              <span class="point-name">Togo</span>
+            </div>
+          </div>
+</div>
+
+<script>
+  $(function () {
+    const $mapContainer = $('#map-container');
+    const $mapInner = $('#map-inner');
+    const $markers = $('.map-marker');
+    const mapImg = $mapInner.find('img.map-image')[0];
+
+    let scale = 1;
+    const minScale = 0.5;
+    const maxScale = 3;
+    let translateX = 0;
+    let translateY = 0;
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragStartY = 0;
+
+    function updateTransform() {
+      $mapInner.css('transform', `translate(${translateX}px, ${translateY}px) scale(${scale})`);
+      positionMarkers();
+    }
+
+    function positionMarkers() {
+      const containerOffset = $mapContainer.offset();
+      const imgWidth = mapImg.naturalWidth * scale;
+      const imgHeight = mapImg.naturalHeight * scale;
+
+      $markers.each(function () {
+        const $marker = $(this);
+        const xPercent = parseFloat($marker.data('x'));
+        const yPercent = parseFloat($marker.data('y'));
+
+        const x = translateX + (xPercent / 100) * imgWidth;
+        const y = translateY + (yPercent / 100) * imgHeight;
+
+        $marker.css({ left: x + 'px', top: y + 'px' });
+      });
+    }
+
+    // Zoom using mouse wheel
+    $mapContainer.on('wheel', function (e) {
+      e.preventDefault();
+
+      const delta = e.originalEvent.deltaY > 0 ? -0.1 : 0.1;
+      let newScale = scale + delta;
+
+      newScale = Math.min(maxScale, Math.max(minScale, newScale));
+      if (newScale === scale) return;
+
+      // Get mouse position relative to map container
+      const rect = this.getBoundingClientRect();
+      const mouseX = e.originalEvent.clientX - rect.left;
+      const mouseY = e.originalEvent.clientY - rect.top;
+
+      // Adjust translation to zoom towards the cursor
+      const zoomFactor = newScale / scale;
+      translateX = mouseX - (mouseX - translateX) * zoomFactor;
+      translateY = mouseY - (mouseY - translateY) * zoomFactor;
+
+      scale = newScale;
+      updateTransform();
+    });
+
+    // Drag support
+    $mapContainer.on('mousedown touchstart', function (e) {
+      isDragging = true;
+      const evt = e.type === 'touchstart' ? e.originalEvent.touches[0] : e;
+      dragStartX = evt.clientX - translateX;
+      dragStartY = evt.clientY - translateY;
+    });
+
+    $(document).on('mousemove touchmove', function (e) {
+      if (!isDragging) return;
+      const evt = e.type === 'touchmove' ? e.originalEvent.touches[0] : e;
+      translateX = evt.clientX - dragStartX;
+      translateY = evt.clientY - dragStartY;
+      updateTransform();
+    });
+
+    $(document).on('mouseup touchend', function () {
+      isDragging = false;
+    });
+
+    // Wait for image load before positioning
+    $(mapImg).on('load', function () {
+      updateTransform();
+    });
+
+    // Fallback in case image is cached
+    if (mapImg.complete) {
+      updateTransform();
+    }
+  });
+</script>
+
+</body>
+</html>
