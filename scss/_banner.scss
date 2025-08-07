@@ -59,6 +59,21 @@
 #main-slider .slick-prev {
   left: 0;
 }
+.banner-block {
+  position: relative;
+  overflow: hidden;
+  video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      z-index: 0;
+      object-fit: cover;
+    }
+}
 
 
 #main-slider {
@@ -91,7 +106,7 @@
   }
   .slider-caption {
     z-index: 10;
-    margin: 420px 0 140px;
+    margin: 280px 0;
   }
   .slider-title-1 {
     font-family: var(--font-2);
@@ -117,6 +132,7 @@
       top: 0;
     }
   }
+  
 }
 
 #inner-slider {
