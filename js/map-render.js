@@ -256,10 +256,59 @@ function renderMap(containerSelector, options = {}) {
             }
 
             $container.css('transform', `translate(${translateX}px, ${translateY}px) scale(${scale})`); 
-            let inverseScale = 1 / scale;
-            $('.map-marker').css('transform', `scale(${inverseScale})`);
+            $('.map-marker').css('transform', `scale(${1 / scale})`);
 			if (developMode) pointMove(scale);
         });
+
+        // Pinch Zoom for Mobile Only
+let startDist = null;
+let startScale = scale;
+
+function getTouchDist(touches) {
+    let dx = touches[0].clientX - touches[1].clientX;
+    let dy = touches[0].clientY - touches[1].clientY;
+    return Math.sqrt(dx * dx + dy * dy);
+}
+
+$('.mo-world-map').on('touchstart', function (e) {
+    if (e.touches.length === 2) {
+        e.preventDefault();
+        startDist = getTouchDist(e.touches);
+        startScale = scale;
+    }
+});
+
+$('.mo-world-map').on('touchmove', function (e) {
+    if (e.touches.length === 2) {
+        e.preventDefault();
+        let newDist = getTouchDist(e.touches);
+        let pinchRatio = newDist / startDist;
+        let newScale = startScale * pinchRatio;
+
+        // Limit zoom
+        newScale = Math.min(maxScale, Math.max(minScale, newScale));
+
+        const rect = e.target.getBoundingClientRect();
+        const centerX = (e.touches[0].clientX + e.touches[1].clientX) / 2 - rect.left;
+        const centerY = (e.touches[0].clientY + e.touches[1].clientY) / 2 - rect.top;
+
+        const zoomFactor = newScale / scale;
+        translateX = centerX - (centerX - translateX) * zoomFactor;
+        translateY = centerY - (centerY - translateY) * zoomFactor;
+
+        scale = newScale;
+
+        if (scale < 1) {
+            scale = 1;
+            translateX = 0;
+            translateY = 0;
+        }
+
+        $container.css('transform', `translate(${translateX}px, ${translateY}px) scale(${scale})`);
+        $('.map-marker').css('transform', `scale(${1 / scale})`);
+    }
+});
+
     }
 	
 	function pointMove(scale = 1) {
