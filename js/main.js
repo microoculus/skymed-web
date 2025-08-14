@@ -1,16 +1,16 @@
+$(window).on("load", function () {
+  $(".preloader").fadeOut(500, function () {
+    $(".wrapper").fadeIn(500);
+  });
+});
+
 $(document).ready(function () {
-	$(window).on("load", function () {
-		$(".preloader").fadeOut(500, function () {
-			$(".wrapper").fadeIn(500);
-		});
-	});
+
 	$(function () {
 		$('.menu-toggler').click(function () {
 			$('html').toggleClass('open-menu');
 		});
 	});
-
-	
 
 	$(function () {
 		$('.side-bar').prepend('<div class="side-menu"></div><div class="side-mega-menu"></div>');

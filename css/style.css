@@ -2973,6 +2973,80 @@ p.paragraph-3 {
   border-radius: 3px;
 }
 
+/* Map styling */
+.mo-world-map {
+  overflow: hidden;
+}
+.mo-world-map .mo-tooltip {
+  position: fixed;
+  pointer-events: none;
+  background: rgba(17, 24, 39, 0.92);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  transform: translate(-50%, -140%);
+  white-space: nowrap;
+  z-index: 10;
+  display: none;
+}
+.mo-world-map .mo-map-wrapper {
+  transform-origin: top left;
+  transition: transform 0.2s ease-out;
+  position: relative;
+}
+.mo-world-map svg.worldmap {
+  width: 100%;
+  height: auto;
+  background: #ffffff;
+}
+.mo-world-map .country {
+  fill: #e1e1e1;
+  transition: fill 120ms ease, transform 120ms ease;
+  transform-origin: center;
+}
+.mo-world-map .country.active {
+  fill: #b7b4b4;
+}
+.mo-world-map .map-marker {
+  position: absolute;
+  text-align: center;
+  pointer-events: auto;
+  cursor: pointer;
+}
+.mo-world-map .map-marker:hover {
+  z-index: 10;
+}
+.mo-world-map .map-marker:hover .marker-icon {
+  transform: scale(1.5);
+  margin-top: -10px;
+}
+.mo-world-map .map-marker:hover .marker-label {
+  display: block;
+}
+.mo-world-map .marker-icon {
+  width: 14px;
+  height: 18px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-left: -7px;
+  transform: scale(1);
+  transform-origin: bottom center;
+  transition: all 100ms ease-out 0s;
+}
+.mo-world-map .marker-label {
+  position: absolute;
+  display: none;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  background-color: #fff;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
 @media (max-width: 767px) {
   .world-map .map-point {
     width: 10px;
