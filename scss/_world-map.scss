@@ -89,7 +89,7 @@
       transform-origin: center;
     }
     .country.active {
-	  fill: #b7b4b4;
+	  fill: var(--bs-primary);
 	}
     .map-marker {
         position: absolute;
@@ -116,6 +116,7 @@
         left: 0;
         margin-left: -7px;
         transform: scale(1);
+        fill: #6597ff;
         transform-origin: bottom center;
         transition: all 100ms ease-out 0s;
     }
@@ -139,6 +140,13 @@
         .map-point {
             width: 10px;
             margin-left: -6px;
+        }
+    }
+    .mo-world-map {
+        .marker-icon {
+            width: 6px;
+            height: 8px;
+            margin-left: -3px;
         }
     }
 }
