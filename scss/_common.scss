@@ -29,6 +29,7 @@ body {
 	font-weight: var(--fw-normal);
 	line-height: 1.2;
 	color: var(--bs-dark);
+	overflow-x: hidden;
 }
 a {
 	color: var(--bs-primary);
