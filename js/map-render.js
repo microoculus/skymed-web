@@ -82,7 +82,7 @@ function renderMap(containerSelector, options = {}) {
             top: py + '%'
         });
 
-        const $iconDiv = $('<img class="marker-icon" src="img/map-point.svg" alt="">');
+        const $iconDiv = $('<svg class="marker-icon" width="35" height="44" viewBox="0 0 35 44" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.5 0C27.165 2.73813e-07 35 7.83502 35 17.5C34.9998 30.9797 17.5 43.9863 17.5 43.9863C17.5 43.9863 0.000172748 31.2161 0 17.5C0 7.83502 7.83502 0 17.5 0ZM17.5 11.8242C14.3654 11.8242 11.8242 14.3654 11.8242 17.5C11.8243 20.6345 14.3655 23.1758 17.5 23.1758C20.6345 23.1758 23.1757 20.6345 23.1758 17.5C23.1758 14.3654 20.6346 11.8242 17.5 11.8242Z" /></svg>');
 
         const $labelDiv = $('<div class="marker-label"></div>').text(point.name);
 
@@ -146,7 +146,9 @@ function renderMap(containerSelector, options = {}) {
             const markerLabel = $("#add-name").val();
 			const $markerDiv = $(
                 `<div class="map-marker add-new">
-                    <img class="marker-icon" src="img/map-point.svg" alt="">
+                    <svg class="marker-icon" width="35" height="44" viewBox="0 0 35 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.5 0C27.165 2.73813e-07 35 7.83502 35 17.5C34.9998 30.9797 17.5 43.9863 17.5 43.9863C17.5 43.9863 0.000172748 31.2161 0 17.5C0 7.83502 7.83502 0 17.5 0ZM17.5 11.8242C14.3654 11.8242 11.8242 14.3654 11.8242 17.5C11.8243 20.6345 14.3655 23.1758 17.5 23.1758C20.6345 23.1758 23.1757 20.6345 23.1758 17.5C23.1758 14.3654 20.6346 11.8242 17.5 11.8242Z"/>
+                    </svg>
                     <div class="marker-label">${markerLabel}</div>
                 </div>`
             ).css({
@@ -274,54 +276,39 @@ function renderMap(containerSelector, options = {}) {
             }, 1500);
         }
 
-        // Pinch Zoom for Mobile Only
-let startDist = null;
-let startScale = scale;
+        // Mobile pinch zoom
+        let startDist = null;
 
-function getTouchDist(touches) {
-    let dx = touches[0].clientX - touches[1].clientX;
-    let dy = touches[0].clientY - touches[1].clientY;
-    return Math.sqrt(dx * dx + dy * dy);
-}
+        $container.on("touchstart", function(e) {
+            if (e.originalEvent.touches.length === 2) {
+                startDist = getDistance(e.originalEvent.touches[0], e.originalEvent.touches[1]);
+            }
+        });
 
-$('.mo-world-map').on('touchstart', function (e) {
-    if (e.touches.length === 2) {
-        e.preventDefault();
-        startDist = getTouchDist(e.touches);
-        startScale = scale;
-    }
-});
+        $container.on("touchmove", function(e) {
+            if (e.originalEvent.touches.length === 2) {
+                e.preventDefault();
+                let newDist = getDistance(e.originalEvent.touches[0], e.originalEvent.touches[1]);
+                if (startDist) {
+                    let zoomChange = (newDist / startDist - 1) * 0.5; // Smooth zoom
+                    scale = Math.min(maxScale, Math.max(minScale, scale + zoomChange));
+                    if (scale < 1) {
+                        scale = 1;
+                    }
+                    $container.css("transform", `scale(${scale})`);
+                    $('.map-marker').css('transform', `scale(${1 / scale})`);
+                    startDist = newDist;
+                }
+            }
+        });
 
-$('.mo-world-map').on('touchmove', function (e) {
-    if (e.touches.length === 2) {
-        e.preventDefault();
-        let newDist = getTouchDist(e.touches);
-        let pinchRatio = newDist / startDist;
-        let newScale = startScale * pinchRatio;
-
-        // Limit zoom
-        newScale = Math.min(maxScale, Math.max(minScale, newScale));
-
-        const rect = e.target.getBoundingClientRect();
-        const centerX = (e.touches[0].clientX + e.touches[1].clientX) / 2 - rect.left;
-        const centerY = (e.touches[0].clientY + e.touches[1].clientY) / 2 - rect.top;
-
-        const zoomFactor = newScale / scale;
-        translateX = centerX - (centerX - translateX) * zoomFactor;
-        translateY = centerY - (centerY - translateY) * zoomFactor;
-
-        scale = newScale;
-
-        if (scale < 1) {
-            scale = 1;
-            translateX = 0;
-            translateY = 0;
+        function getDistance(touch1, touch2) {
+            let dx = touch2.pageX - touch1.pageX;
+            let dy = touch2.pageY - touch1.pageY;
+            return Math.sqrt(dx * dx + dy * dy);
         }
 
-        $container.css('transform', `translate(${translateX}px, ${translateY}px) scale(${scale})`);
-        $('.map-marker').css('transform', `scale(${1 / scale})`);
-    }
-});
+
 
     }
 	
