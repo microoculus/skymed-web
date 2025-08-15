@@ -48,7 +48,7 @@
 	
 
 .mo-world-map {
-    overflow: hidden;
+    //overflow: hidden;
     .mo-tooltip {
       position: fixed;
       pointer-events: none;
@@ -67,7 +67,7 @@
         transition: transform 0.2s ease-out;
         position: relative;
     }
-    svg.worldmap { width: 100%; height: auto; background: #ffffff; }
+    svg.worldmap { width: 100%; height: auto;  }
     .country {
       fill: #e1e1e1;
       

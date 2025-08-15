@@ -235,7 +235,6 @@
             justify-content: center;
             align-items: center;
             font-size: 20px;
-            transform-origin: center center;
             touch-action: none; /* IMPORTANT for mobile touch gestures */
         }
     </style>
@@ -363,29 +362,49 @@
 	});
 	</script>
 
-  
+
   <script>
 $(function(){
     let scale = 1;
     const minScale = 0.5;
     const maxScale = 3;
 
+    let translateX = 0, translateY = 0;
+    let startX = 0, startY = 0;
+    let isDragging = false;
+
     const $box = $("#zoom-box");
 
-    // Desktop scroll zoom
+    // Desktop wheel zoom (focus on mouse point)
     $box.on("wheel", function(e) {
         e.preventDefault();
+        let rect = $box[0].getBoundingClientRect();
+        let offsetX = e.originalEvent.clientX - rect.left;
+        let offsetY = e.originalEvent.clientY - rect.top;
+
         let delta = e.originalEvent.deltaY > 0 ? -0.1 : 0.1;
-        scale = Math.min(maxScale, Math.max(minScale, scale + delta));
-        $box.css("transform", `scale(${scale})`);
+        let newScale = Math.min(maxScale, Math.max(minScale, scale + delta));
+
+        // Adjust translation to keep zoom center
+        translateX -= (offsetX - translateX) * (newScale / scale - 1);
+        translateY -= (offsetY - translateY) * (newScale / scale - 1);
+
+        scale = newScale;
+        updateTransform();
     });
 
-    // Mobile pinch zoom
+    // Touch pinch zoom + drag
     let startDist = null;
+    let pinchCenter = null;
 
     $box.on("touchstart", function(e) {
         if (e.originalEvent.touches.length === 2) {
             startDist = getDistance(e.originalEvent.touches[0], e.originalEvent.touches[1]);
+            pinchCenter = getCenter(e.originalEvent.touches[0], e.originalEvent.touches[1]);
+        } else if (e.originalEvent.touches.length === 1) {
+            isDragging = true;
+            startX = e.originalEvent.touches[0].pageX - translateX;
+            startY = e.originalEvent.touches[0].pageY - translateY;
         }
     });
 
@@ -393,13 +412,31 @@ $(function(){
         if (e.originalEvent.touches.length === 2) {
             e.preventDefault();
             let newDist = getDistance(e.originalEvent.touches[0], e.originalEvent.touches[1]);
-            if (startDist) {
-                let zoomChange = (newDist / startDist - 1) * 0.5; // Smooth zoom
-                scale = Math.min(maxScale, Math.max(minScale, scale + zoomChange));
-                $box.css("transform", `scale(${scale})`);
+            let newCenter = getCenter(e.originalEvent.touches[0], e.originalEvent.touches[1]);
+
+            if (startDist && pinchCenter) {
+                let zoomChange = newDist / startDist;
+                let newScale = Math.min(maxScale, Math.max(minScale, scale * zoomChange));
+
+                translateX -= (newCenter.x - translateX) * (newScale / scale - 1);
+                translateY -= (newCenter.y - translateY) * (newScale / scale - 1);
+
+                scale = newScale;
+                updateTransform();
+
                 startDist = newDist;
+                pinchCenter = newCenter;
             }
+        } else if (isDragging && e.originalEvent.touches.length === 1) {
+            translateX = e.originalEvent.touches[0].pageX - startX;
+            translateY = e.originalEvent.touches[0].pageY - startY;
+            updateTransform();
         }
+    });
+
+    $box.on("touchend", function(e) {
+        if (e.originalEvent.touches.length < 2) startDist = null;
+        if (e.originalEvent.touches.length === 0) isDragging = false;
     });
 
     function getDistance(touch1, touch2) {
@@ -407,8 +444,19 @@ $(function(){
         let dy = touch2.pageY - touch1.pageY;
         return Math.sqrt(dx * dx + dy * dy);
     }
+
+    function getCenter(touch1, touch2) {
+        return {
+            x: (touch1.pageX + touch2.pageX) / 2,
+            y: (touch1.pageY + touch2.pageY) / 2
+        };
+    }
+
+    function updateTransform() {
+        $box.css("transform", `translate(${translateX}px, ${translateY}px) scale(${scale})`);
+    }
 });
-  </script>
+</script>
 </body>
 
 </html>

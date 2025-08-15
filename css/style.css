@@ -30,6 +30,7 @@ body {
   font-weight: var(--fw-normal);
   line-height: 1.2;
   color: var(--bs-dark);
+  overflow-x: hidden;
 }
 
 a {
@@ -2974,9 +2975,6 @@ p.paragraph-3 {
 }
 
 /* Map styling */
-.mo-world-map {
-  overflow: hidden;
-}
 .mo-world-map .mo-tooltip {
   position: fixed;
   pointer-events: none;
@@ -2998,7 +2996,6 @@ p.paragraph-3 {
 .mo-world-map svg.worldmap {
   width: 100%;
   height: auto;
-  background: #ffffff;
 }
 .mo-world-map .country {
   fill: #e1e1e1;
