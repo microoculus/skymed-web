@@ -302,7 +302,7 @@
                 in 2022 and now benefit from its strategic leadership:</p>
             </div>
           </div>
-          <div class="slider slider-1">
+          <div class="slider slider-1 mb-5">
             <div class="slide">
               <div class="card card-item-1">
                 <div class="card-img">
@@ -406,7 +406,9 @@
             </div>
           </div>
 
-          <div class="world-map mt-5">
+          <div id="map"></div>
+
+          <div class="world-map mt-5 d-none">
             <img src="img/map.svg" class="w-100" alt="">
             <div class="map-marker" style="top: 51%; left: 69%;">
               <img class="map-point" src="img/map-point.svg" alt="">
@@ -611,9 +613,45 @@
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/slick.js"></script>
+  <script src="js/map-render.js"></script> 
 
   <!-- Custom JS -->
   <script src="js/main.js"></script>
+
+  <script>
+    $(function () {
+      renderMap('#map', {
+      showTitles: false,
+      showCountryTooltip: false,
+      showMarkerTooltip: false,
+      zoom : true,
+      selectCountry: 'BJ, GE, GH, MD, UZ, ML, MY, NE, CI, CM, KG, SN, TM, TJ, TG, AE, IN, AZ, UA, QA',
+      selectPoint: [
+        { name: "Ukraine", location: "55.6,34.11" },
+        { name: "Uzbekistan", location: "64.16,38.66" },
+        { name: "Moldova", location: "54.73,35.31" },
+        { name: "Georgia", location: "58.88, 38.92" },
+        { name: "Turkeministan", location: "63.33, 40.82" },
+        { name: "Tajikstan", location: "66.56, 41.13" },
+        { name: "Kyrgyzstan", location: "67.52, 39.41" },
+        { name: "Azerbaijan", location: "60.03, 40.2" },
+        { name: "India", location: "68.39, 51.2" },
+        { name: "Malaysia", location: "75.17, 61.6" },
+        { name: "Bahrain", location: "60.86, 49.12" },
+        { name: "UAE", location: "61.84, 50.54" },
+        { name: "Qatar", location: "61.02, 49.65" },
+        { name: "Senegal", location: "42.67, 55.66" },
+        { name: "Ivorycost", location: "45.18, 59.97" },
+        { name: "Mali", location: "45.87, 54.6" },
+        { name: "Niger", location: "49.3, 54.52" },
+        { name: "Benin", location: "47.44, 58.77" },
+        { name: "Togo", location: "47.06, 59.74" },
+        { name: "Cameroon", location: "50.15, 61.38" }
+      ],
+      developMode: false,
+      });
+    });
+	</script>
 
 </body>
 
