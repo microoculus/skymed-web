@@ -276,12 +276,18 @@ function renderMap(containerSelector, options = {}) {
             }, 1500);
         }
 
-        // Mobile pinch zoom
+        // Touch pinch zoom + drag
         let startDist = null;
+        let pinchCenter = null;
 
         $container.on("touchstart", function(e) {
             if (e.originalEvent.touches.length === 2) {
                 startDist = getDistance(e.originalEvent.touches[0], e.originalEvent.touches[1]);
+                pinchCenter = getCenter(e.originalEvent.touches[0], e.originalEvent.touches[1]);
+            } else if (e.originalEvent.touches.length === 1) {
+                isDragging = true;
+                startX = e.originalEvent.touches[0].pageX - translateX;
+                startY = e.originalEvent.touches[0].pageY - translateY;
             }
         });
 
@@ -289,23 +295,49 @@ function renderMap(containerSelector, options = {}) {
             if (e.originalEvent.touches.length === 2) {
                 e.preventDefault();
                 let newDist = getDistance(e.originalEvent.touches[0], e.originalEvent.touches[1]);
-                if (startDist) {
-                    let zoomChange = (newDist / startDist - 1) * 0.5; // Smooth zoom
-                    scale = Math.min(maxScale, Math.max(minScale, scale + zoomChange));
-                    if (scale < 1) {
-                        scale = 1;
-                    }
-                    $container.css("transform", `scale(${scale})`);
-                    $('.map-marker').css('transform', `scale(${1 / scale})`);
+                let newCenter = getCenter(e.originalEvent.touches[0], e.originalEvent.touches[1]);
+
+                if (startDist && pinchCenter) {
+                    let zoomChange = newDist / startDist;
+                    let newScale = Math.min(maxScale, Math.max(minScale, scale * zoomChange));
+
+                    translateX -= (newCenter.x - translateX) * (newScale / scale - 1);
+                    translateY -= (newCenter.y - translateY) * (newScale / scale - 1);
+
+                    scale = newScale;
+                    updateTransform();
+
                     startDist = newDist;
+                    pinchCenter = newCenter;
                 }
+            } else if (isDragging && e.originalEvent.touches.length === 1) {
+                translateX = e.originalEvent.touches[0].pageX - startX;
+                translateY = e.originalEvent.touches[0].pageY - startY;
+                updateTransform();
             }
+        });
+
+        $container.on("touchend", function(e) {
+            if (e.originalEvent.touches.length < 2) startDist = null;
+            if (e.originalEvent.touches.length === 0) isDragging = false;
         });
 
         function getDistance(touch1, touch2) {
             let dx = touch2.pageX - touch1.pageX;
             let dy = touch2.pageY - touch1.pageY;
             return Math.sqrt(dx * dx + dy * dy);
+        }
+
+        function getCenter(touch1, touch2) {
+            return {
+                x: (touch1.pageX + touch2.pageX) / 2,
+                y: (touch1.pageY + touch2.pageY) / 2
+            };
+        }
+
+        function updateTransform() {
+            $container.css("transform", `translate(${translateX}px, ${translateY}px) scale(${scale})`);
+            $('.map-marker').css('transform', `scale(${1 / scale})`);
         }
 
 
