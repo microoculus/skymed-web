@@ -276,71 +276,54 @@ function renderMap(containerSelector, options = {}) {
             }, 1500);
         }
 
-        // Touch pinch zoom + drag
-        let startDist = null;
-        let pinchCenter = null;
+        // Pinch Zoom for Mobile Only
+let startDist = null;
+let startScale = scale;
 
-        $container.on("touchstart", function(e) {
-            if (e.originalEvent.touches.length === 2) {
-                startDist = getDistance(e.originalEvent.touches[0], e.originalEvent.touches[1]);
-                pinchCenter = getCenter(e.originalEvent.touches[0], e.originalEvent.touches[1]);
-            } else if (e.originalEvent.touches.length === 1) {
-                isDragging = true;
-                startX = e.originalEvent.touches[0].pageX - translateX;
-                startY = e.originalEvent.touches[0].pageY - translateY;
-            }
-        });
+function getTouchDist(touches) {
+    let dx = touches[0].clientX - touches[1].clientX;
+    let dy = touches[0].clientY - touches[1].clientY;
+    return Math.sqrt(dx * dx + dy * dy);
+}
 
-        $container.on("touchmove", function(e) {
-            if (e.originalEvent.touches.length === 2) {
-                e.preventDefault();
-                let newDist = getDistance(e.originalEvent.touches[0], e.originalEvent.touches[1]);
-                let newCenter = getCenter(e.originalEvent.touches[0], e.originalEvent.touches[1]);
+$('.mo-world-map').on('touchstart', function (e) {
+    if (e.touches.length === 2) {
+        e.preventDefault();
+        startDist = getTouchDist(e.touches);
+        startScale = scale;
+    }
+});
 
-                if (startDist && pinchCenter) {
-                    let zoomChange = newDist / startDist;
-                    let newScale = Math.min(maxScale, Math.max(minScale, scale * zoomChange));
+$('.mo-world-map').on('touchmove', function (e) {
+    if (e.touches.length === 2) {
+        e.preventDefault();
+        let newDist = getTouchDist(e.touches);
+        let pinchRatio = newDist / startDist;
+        let newScale = startScale * pinchRatio;
 
-                    translateX -= (newCenter.x - translateX) * (newScale / scale - 1);
-                    translateY -= (newCenter.y - translateY) * (newScale / scale - 1);
+        // Limit zoom
+        newScale = Math.min(maxScale, Math.max(minScale, newScale));
 
-                    scale = newScale;
-                    updateTransform();
+        const rect = e.target.getBoundingClientRect();
+        const centerX = (e.touches[0].clientX + e.touches[1].clientX) / 2 - rect.left;
+        const centerY = (e.touches[0].clientY + e.touches[1].clientY) / 2 - rect.top;
 
-                    startDist = newDist;
-                    pinchCenter = newCenter;
-                }
-            } else if (isDragging && e.originalEvent.touches.length === 1) {
-                translateX = e.originalEvent.touches[0].pageX - startX;
-                translateY = e.originalEvent.touches[0].pageY - startY;
-                updateTransform();
-            }
-        });
+        const zoomFactor = newScale / scale;
+        translateX = centerX - (centerX - translateX) * zoomFactor;
+        translateY = centerY - (centerY - translateY) * zoomFactor;
 
-        $container.on("touchend", function(e) {
-            if (e.originalEvent.touches.length < 2) startDist = null;
-            if (e.originalEvent.touches.length === 0) isDragging = false;
-        });
+        scale = newScale;
 
-        function getDistance(touch1, touch2) {
-            let dx = touch2.pageX - touch1.pageX;
-            let dy = touch2.pageY - touch1.pageY;
-            return Math.sqrt(dx * dx + dy * dy);
+        if (scale < 1) {
+            scale = 1;
+            translateX = 0;
+            translateY = 0;
         }
 
-        function getCenter(touch1, touch2) {
-            return {
-                x: (touch1.pageX + touch2.pageX) / 2,
-                y: (touch1.pageY + touch2.pageY) / 2
-            };
-        }
-
-        function updateTransform() {
-            $container.css("transform", `translate(${translateX}px, ${translateY}px) scale(${scale})`);
-            $('.map-marker').css('transform', `scale(${1 / scale})`);
-        }
-
-
+        $container.css('transform', `translate(${translateX}px, ${translateY}px) scale(${scale})`);
+        $('.map-marker').css('transform', `scale(${1 / scale})`);
+    }
+});
 
     }
 	
