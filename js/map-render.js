@@ -234,7 +234,7 @@ function renderMap(containerSelector, options = {}) {
     if (zoom) {
         $('.mo-world-map').on('wheel', function(e) {
             e.preventDefault();
-            const delta = e.originalEvent.deltaY > 0 ? -0.2 : 0.2;
+            const delta = e.originalEvent.deltaY > 0 ? -0.3 : 0.3;
             let newScale = scale + delta;
             newScale = Math.min(maxScale, Math.max(minScale, newScale));
             if (newScale === scale) return;

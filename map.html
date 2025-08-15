@@ -225,8 +225,21 @@
 
         </div>
       </div><!-- Content block end -->
-
-
+ <style>
+        #zoom-box {
+            width: 300px;
+            height: 300px;
+            background: lightblue;
+            margin: 50px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            transform-origin: center center;
+            touch-action: none; /* IMPORTANT for mobile touch gestures */
+        }
+    </style>
+<div id="zoom-box">Zoom Me</div>
     </div><!-- Content end -->
 
     <!-- Footer start -->
@@ -349,6 +362,53 @@
 	  });
 	});
 	</script>
+
+  
+  <script>
+$(function(){
+    let scale = 1;
+    const minScale = 0.5;
+    const maxScale = 3;
+
+    const $box = $("#zoom-box");
+
+    // Desktop scroll zoom
+    $box.on("wheel", function(e) {
+        e.preventDefault();
+        let delta = e.originalEvent.deltaY > 0 ? -0.1 : 0.1;
+        scale = Math.min(maxScale, Math.max(minScale, scale + delta));
+        $box.css("transform", `scale(${scale})`);
+    });
+
+    // Mobile pinch zoom
+    let startDist = null;
+
+    $box.on("touchstart", function(e) {
+        if (e.originalEvent.touches.length === 2) {
+            startDist = getDistance(e.originalEvent.touches[0], e.originalEvent.touches[1]);
+        }
+    });
+
+    $box.on("touchmove", function(e) {
+        if (e.originalEvent.touches.length === 2) {
+            e.preventDefault();
+            let newDist = getDistance(e.originalEvent.touches[0], e.originalEvent.touches[1]);
+            if (startDist) {
+                let zoomChange = (newDist / startDist - 1) * 0.5; // Smooth zoom
+                scale = Math.min(maxScale, Math.max(minScale, scale + zoomChange));
+                $box.css("transform", `scale(${scale})`);
+                startDist = newDist;
+            }
+        }
+    });
+
+    function getDistance(touch1, touch2) {
+        let dx = touch2.pageX - touch1.pageX;
+        let dy = touch2.pageY - touch1.pageY;
+        return Math.sqrt(dx * dx + dy * dy);
+    }
+});
+  </script>
 </body>
 
 </html>
