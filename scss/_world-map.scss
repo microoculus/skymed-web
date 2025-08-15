@@ -49,6 +49,7 @@
 
 .mo-world-map {
     //overflow: hidden;
+    position: relative;
     .mo-tooltip {
       position: fixed;
       pointer-events: none;
@@ -62,6 +63,19 @@
       z-index: 10;
       display: none;
     }
+    #ctrl-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.8);
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            pointer-events: none;
+            display: none;
+        }
     .mo-map-wrapper {
         transform-origin: top left;
         transition: transform 0.2s ease-out;

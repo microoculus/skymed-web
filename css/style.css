@@ -2975,6 +2975,9 @@ p.paragraph-3 {
 }
 
 /* Map styling */
+.mo-world-map {
+  position: relative;
+}
 .mo-world-map .mo-tooltip {
   position: fixed;
   pointer-events: none;
@@ -2986,6 +2989,19 @@ p.paragraph-3 {
   transform: translate(-50%, -140%);
   white-space: nowrap;
   z-index: 10;
+  display: none;
+}
+.mo-world-map #ctrl-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  pointer-events: none;
   display: none;
 }
 .mo-world-map .mo-map-wrapper {
