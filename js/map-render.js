@@ -135,20 +135,64 @@ function renderMap(containerSelector, options = {}) {
 	if (developMode) {
 		const $wrapDiv = $(`
 			<div class="mo-dev-wrap">
-                <input id="add-name"/>
-                <div class="mo-marker-details"></div>
+                
+
+    <div class="mo-dev-checkbox"> 
+        <label>
+            <input type="checkbox" value="">
+            Show Titles
+        </label>
+        <label>
+            <input type="checkbox" value="">
+            Show Country Tooltip
+        </label>
+        <label>
+            <input type="checkbox" value="">
+            Show Marker Tooltip
+        </label>
+        <label>
+            <input type="checkbox" value="">
+            Zoom
+        </label>
+    </div>
+
+    <div class="mo-dev-add-point">
+        <label>Location Name</label>
+        <input class="mo-add-point-name" placeholder="Enter name"/>
+        <button class="mo-add-point-btn">Add location</button>
+        
+        <div class="mo-marker-details">
+            <label>Edit Location</label>
+            <input class="mo-point-name"/>
+            <button class="mo-update-marker">Update</button>
+            <button class="mo-remove-marker">Remove</button>
+            <div class="mo-point-json"></div>
+        </div>
+    </div>
+                
                 <div class="mo-select-country"></div>
-				<button id="add-point">Add location</button>
+				
 				<button id="get-point">get location</button>
-				<textarea id="markers-textarea"></textarea>
+				<div id="markers-textarea"></div>
 			</div>
 		`);
 		
 
 		$($containerOuter).parent().append($wrapDiv);
 
-		$('#add-point').on('click', function () {
-            const markerLabel = $("#add-name").val();
+
+		$('.mo-add-point-btn').on('click', function () {
+            const $input = $(".mo-add-point-name");
+            const markerLabel = $input.val().trim();
+
+            if (!markerLabel) {
+                $input.css('borderColor', 'red').focus();
+                return;
+            }
+
+            // Reset if valid
+            $input.css('borderColor', '');
+
 			const $markerDiv = $(
                 `<div class="map-marker add-new">
                     <svg class="marker-icon" width="35" height="44" viewBox="0 0 35 44" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -162,32 +206,52 @@ function renderMap(containerSelector, options = {}) {
             });
 
 			$container.append($markerDiv);
+            $input.val('');
             mapMarkerDetails();
 		});
 		pointMove(scale);
 
+        
+
         function mapMarkerDetails() {
-            $('.map-marker').on('click, mouseup', function () {
-                let markers = [];
-                let name = $(this).find(".marker-label").text().trim();
+            let selectedMarker = null; // store selected marker globally
 
-                let left = $(this).prop("style").left.replace("%", "");
-                let top = $(this).prop("style").top.replace("%", "");
+            $('.map-marker').on('mousedown', function () {
+                selectedMarker = $(this); // update selected marker
+                let name = selectedMarker.find(".marker-label").text().trim() || selectedMarker.text().trim();
 
-                markers.push({
-                    name: name,
-                    location: left + ", " + top
-                });
-                let output = markers.map(m => 
-                    `{ name: "${m.name}", location: "${m.location}" }`
-                ).join(",\n");
+                let left = selectedMarker.prop("style").left.replace("%", "");
+                let top = selectedMarker.prop("style").top.replace("%", "");
 
-                $("#add-name").val(name);
-                $(".mo-marker-details").text(output);
+                let output = `{ name: "${name}", location: "${left}, ${top}" }`;
 
+                $(".mo-point-name").val(name);
+                $(".mo-point-json").text(output);
+            });
+
+            // Update name
+            $('.mo-update-marker').on('click', function () {
+                if (selectedMarker) {
+                    let newName = $(".mo-point-name").val().trim();
+                    if (newName) {
+                        selectedMarker.find('.marker-label').text(newName);
+                    }
+                }
+            });
+
+            // Remove marker
+            $('.mo-remove-marker').on('click', function () {
+                if (selectedMarker) {
+                    selectedMarker.remove();
+                    selectedMarker = null;
+                    $(".mo-point-name").val('');
+                    $(".mo-point-json").text('');
+                }
             });
         }
+
         mapMarkerDetails();
+
 
         
 		
@@ -208,16 +272,22 @@ function renderMap(containerSelector, options = {}) {
                 `{ name: "${m.name}", location: "${m.location}" }`
             ).join(",\n");
 
-            $("#markers-textarea").val(output);
+            $("#markers-textarea").text(output);
 		});
 
 		$(document).on('click', '.country', function() {
-            $(this).toggleClass('active');
+            
+            
+            if($(this).hasClass('active')) {
+                $(this).removeClass('active');
+            } else if(!$(this).hasClass('active')) {
+                $(this).toggleClass('active-new');
+            }
 
             let countries = [];
 
             // Loop through all .country elements with 'active' class
-            $container.find(".country.active").each(function () {
+            $container.find(".country.active, .country.active-new").each(function () {
                 // Get country code from data attribute
                 let code = $(this).data("code"); 
                 if (code) {
@@ -293,10 +363,6 @@ function renderMap(containerSelector, options = {}) {
             const minY = scaledHeight - translateY;
  
             //console.log(outerWidth, outerHeight, translateX, translateY);
-
-
-
-
 
             updateTransform();
 			if (developMode) pointMove(scale);

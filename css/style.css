@@ -3010,7 +3010,7 @@ p.paragraph-3 {
   transition: transform 0.2s ease-out;
   position: relative;
 }
-.mo-world-map svg.worldmap {
+.mo-world-map svg.mo-worldmap-svg {
   width: 100%;
   height: auto;
 }
@@ -3062,6 +3062,30 @@ p.paragraph-3 {
   border-radius: 3px;
 }
 
+.mo-world-map .map-marker.add-new svg {
+  fill: #e90e0e;
+}
+.mo-world-map .map-marker .mo-remove-marker {
+  position: absolute;
+  z-index: 99;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+  line-height: 20px;
+}
+.mo-world-map .country.active-new {
+  fill: red;
+}
+
+.mo-dev-wrap label {
+  display: block;
+  width: 100%;
+  margin-bottom: 6px;
+}
 @media (max-width: 767px) {
   .world-map .map-point {
     width: 10px;
