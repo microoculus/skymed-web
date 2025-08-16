@@ -132,8 +132,44 @@
         border-radius: 3px;
     }
 }
+//Dev mode 
+.mo-world-map {
+    .map-marker {
+        &.add-new {
+            svg {
+                fill: #e90e0e;
+            }
+        }
+        .mo-remove-marker {
+            position: absolute;
+            z-index: 99;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            color: #fff;
+            font-size: 12px;
+            text-align: center;
+            line-height: 20px;
+        }
+    }
+    .country.active-new {
+        fill: red;
+    }
+}
+.mo-dev-wrap {
+    label {
+        display: block;
+        width: 100%;
+        margin-bottom: 6px;
+    }
+    .mo-dev-checkbox {
 
+    }
+    .mo-dev-add-point {
 
+    }
+}
 
 @media (max-width: 767px) {
     .world-map {
